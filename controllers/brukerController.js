@@ -1,4 +1,3 @@
-const { response } = require('express');
 const asyncHandler = require('express-async-handler');
 const Bruker = require('../models/brukerModel');
 var axios = require("axios").default;
@@ -33,21 +32,7 @@ const getUserByAuth0Id = asyncHandler(async (req, res) => {
 
 
     if (user) {
-        var options = {
-            method: 'POST',
-            url: 'https://lokalt.eu.auth0.com/api/v2/users',
-            headers: {authorization: 'Bearer ABCD', 'content-type': 'application/json'},
-            data: {
-              app_metadata: {_id: user._id}
-            }
-          };
-          
-          axios.request(options).then(function (response) {
-            res.json(user + response.data);
-          }).catch(function (error) {
-            console.error(error);
-          });
-        
+        res.json(user);
     } else {
         res.status(404);
         throw new Error('User not found');

@@ -25,6 +25,7 @@ const getUserById = asyncHandler(async (req, res) => {
 })
 
 const getUserByAuth0Id = asyncHandler(async (req, res) => {
+    console.log(req.params.id)
     const user = await Bruker.findOne({ auth0Id: req.params.id });
     if (user) {
         res.json(user);

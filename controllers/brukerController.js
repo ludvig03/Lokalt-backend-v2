@@ -24,6 +24,17 @@ const getUserById = asyncHandler(async (req, res) => {
     }
 })
 
+const getUserByAuth0Id = asyncHandler(async (req, res) => {
+    const user = await Bruker.findOne({ auth0Id: req.params.id });
+    if (user) {
+        res.json(user);
+    } else {
+        res.status(404);
+        throw new Error('User not found');
+    }
+})
+
+
 // @desc    Delete user
 // @route   DELETE /api/users/:id
 // @access  Private/Admin
@@ -88,5 +99,6 @@ module.exports = {
     deleteUser,
     createUser,
     updateUser,
+    getUserByAuth0Id
 }
 

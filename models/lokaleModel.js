@@ -8,6 +8,38 @@ const lokaleSchema = new mongoose.Schema({
     lokaleTyper: [String],
     muligheter: [String],
     gjennomsnittligRating: Number,
+    antallPersoner: Number,
+    kvadratmeter: Number,
+    leieTider: {
+        mandag: {
+            start: String,
+            slutt: String,
+        },
+        tirsdag: {
+            start: String,
+            slutt: String,
+        },
+        onsdag: {
+            start: String,
+            slutt: String
+        },
+        torsdag: {
+            start: String,
+            slutt: String
+        },
+        fredag: {
+            start: String,
+            slutt: String
+        },
+        lørdag: {
+            start: String,
+            slutt: String
+        },
+        søndag: {
+            start: String,
+            slutt: String
+        }
+    },
     eier: {
         _id: mongoose.Schema.Types.ObjectId,
         navn: String,

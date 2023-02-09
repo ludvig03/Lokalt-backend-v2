@@ -51,6 +51,9 @@ const createLokale = asyncHandler(async (req, res) => {
         bilder: req.body.bilder,
         lokaleTyper: req.body.lokaleTyper,
         muligheter: req.body.muligheter,
+        antallPersoner: req.body.antallPersoner,
+        kvadratmeter: req.body.kvadratmeter,
+        leieTider: req.body.leieTider,
         eier: {
             _id: req.body.eier._id,
             navn: req.body.eier.navn,

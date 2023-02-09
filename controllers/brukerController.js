@@ -38,7 +38,7 @@ const getUserByAuth0Id = asyncHandler(async (req, res) => {
 
 // @desc    Delete user
 // @route   DELETE /api/users/:id
-// @access  Private/Admii
+// @access  Private/Admiiyg
 
 const deleteUser = asyncHandler(async (req, res) => {
     const user = await Bruker.findById(req.params.id);

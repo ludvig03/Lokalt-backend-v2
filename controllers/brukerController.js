@@ -1,6 +1,5 @@
 const asyncHandler = require('express-async-handler');
 const Bruker = require('../models/brukerModel');
-var axios = require("axios").default;
 
 // @desc    Fetch all users
 // @route   GET /api/users
@@ -28,9 +27,7 @@ const getUserById = asyncHandler(async (req, res) => {
 const getUserByAuth0Id = asyncHandler(async (req, res) => {
     console.log(req.params.id)
     const user = await Bruker.findOne({ auth0Id: req.params.id });
-
-
-
+    
     if (user) {
         res.json(user);
     } else {
@@ -42,7 +39,7 @@ const getUserByAuth0Id = asyncHandler(async (req, res) => {
 
 // @desc    Delete user
 // @route   DELETE /api/users/:id
-// @access  Private/Admiiyg
+// @access  Private/Admin
 
 const deleteUser = asyncHandler(async (req, res) => {
     const user = await Bruker.findById(req.params.id);

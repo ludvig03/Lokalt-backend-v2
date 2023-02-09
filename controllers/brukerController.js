@@ -38,7 +38,7 @@ const getUserByAuth0Id = asyncHandler(async (req, res) => {
 
 // @desc    Delete user
 // @route   DELETE /api/users/:id
-// @access  Private/Admin
+// @access  Private/Admii
 
 const deleteUser = asyncHandler(async (req, res) => {
     const user = await Bruker.findById(req.params.id);
@@ -47,7 +47,7 @@ const deleteUser = asyncHandler(async (req, res) => {
         res.json({ message: 'User removed' });
     } else {
         res.status(404);
-        throw new Error('User not found');
+        throw new Error('User not found')
     }
 })
 

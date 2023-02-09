@@ -1,3 +1,4 @@
+const { response } = require('express');
 const asyncHandler = require('express-async-handler');
 const Bruker = require('../models/brukerModel');
 var axios = require("axios").default;
@@ -29,23 +30,24 @@ const getUserByAuth0Id = asyncHandler(async (req, res) => {
     console.log(req.params.id)
     const user = await Bruker.findOne({ auth0Id: req.params.id });
 
-    var options = {
-        method: 'POST',
-        url: 'https://lokalt.eu.auth0.com/api/v2/users',
-        headers: {authorization: 'Bearer ABCD', 'content-type': 'application/json'},
-        data: {
-          app_metadata: {_id: user._id}
-        }
-      };
-      
-      axios.request(options).then(function (response) {
-        console.log(response.data);
-      }).catch(function (error) {
-        console.error(error);
-      });
+
 
     if (user) {
-        res.json(user);
+        var options = {
+            method: 'POST',
+            url: 'https://lokalt.eu.auth0.com/api/v2/users',
+            headers: {authorization: 'Bearer ABCD', 'content-type': 'application/json'},
+            data: {
+              app_metadata: {_id: user._id}
+            }
+          };
+          
+          axios.request(options).then(function (response) {
+            res.json(user + response.data);
+          }).catch(function (error) {
+            console.error(error);
+          });
+        
     } else {
         res.status(404);
         throw new Error('User not found');

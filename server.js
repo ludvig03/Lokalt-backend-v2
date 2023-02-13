@@ -61,6 +61,6 @@ app.use('/api/lokaler', require('./routes/lokaleRoutes'));
 app.use('/api/meldinger', require('./routes/meldingRoutes'));
 
 // listen for requests
-app.listen(3030, () => {
+app.listen(process.env.PORT, () => {
     console.log(`Server is listening on port ${process.env.PORT}`.yellow.bold);
 })

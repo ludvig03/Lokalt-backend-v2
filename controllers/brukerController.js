@@ -95,12 +95,28 @@ const updateUser = asyncHandler(async (req, res) => {
     }
 })
 
+const registerUserBYAuth0Id = asyncHandler(async (req, res) => {
+    const user = new Bruker({
+        navn: req.body.navn,
+        epost: req.body.epost,
+        auth0Id: req.body.auth0Id,
+    })
+
+    const createdUser = await user.save();
+    res.status(201).json(createdUser);
+})
+
+
+
+
+
 module.exports = {
     getUsers,
     getUserById,
     deleteUser,
     createUser,
     updateUser,
-    getUserByAuth0Id
+    getUserByAuth0Id,
+    registerUserBYAuth0Id
 }
 

@@ -8,23 +8,25 @@ const mongoose = require('mongoose');
 const { expressjwt: expressJwt } = require('express-jwt');
 const jwks = require('jwks-rsa');
 
-const jwtCheck = expressJwt({
-    secret: jwks.expressJwtSecret({
-        cache: true,
-        rateLimit: true,
-        jwksRequestsPerMinute: 5,
-        jwksUri: 'https://lokalt-v2.eu.auth0.com/.well-known/jwks.json'
-    }),
-    audience: 'https://api.lokalt.no',
-    issuer: 'https://lokalt-v2.eu.auth0.com/',
-    algorithms: ['RS256']
-});
+
 
 // Middleware
 
 
 
 app.get('/user/manifestMongoCustomer', jwtCheck, function (req, res) {
+
+    const jwtCheck = expressJwt({
+        secret: jwks.expressJwtSecret({
+            cache: true,
+            rateLimit: true,
+            jwksRequestsPerMinute: 5,
+            jwksUri: 'https://lokalt-v2.eu.auth0.com/.well-known/jwks.json'
+        }),
+        audience: 'https://api.lokalt.no',
+        issuer: 'https://lokalt-v2.eu.auth0.com/',
+        algorithms: ['RS256']
+    });
 
     console.log(req.user)
     console.log(jwtCheck)

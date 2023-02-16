@@ -5,16 +5,10 @@ const morgan = require('morgan');
 const cors = require('cors');
 const app = express();
 const mongoose = require('mongoose');
-const { expressjwt: expressJwt } = require('express-jwt');
-const jwks = require('jwks-rsa');
 
 
 
 // Middleware
-
-
-
-
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
@@ -29,7 +23,6 @@ app.use(morgan('dev'));
 app.use('/api/brukere', require('./routes/brukerRoutes'));
 app.use('/api/lokaler', require('./routes/lokaleRoutes'));
 app.use('/api/meldinger', require('./routes/meldingRoutes'));
-app.use('/api/registreringer', require('./routes/registreringRoutes'));
 
 // listen for requests
 app.listen(process.env.PORT, () => {
